@@ -7,24 +7,23 @@ namespace ApplicationCore.Dto
     public class CreateOrEditUserRequest
     {
         [Required]
-        public int Id { get; private set; }
+        public int Id { get; set; }
 
         [Required]
         [StringLength(100)]
-        public string FirstName { get; private set; }
+        public string FirstName { get; set; }
 
         [Required]
         [StringLength(100)]
-        public string LastName { get; private set; }
+        public string LastName { get; set; }
 
         [Required]
-        public DateTime BirthDate { get; private set; }
+        public DateTime BirthDate { get; set; }
 
-        [Required]
-        public IFormFile Avatar { get; private set; }
+        public IFormFile Avatar { get; set; }
 
         [Required]
         [StringLength(50)]
-        public string UserName { get; private set; }
+        public string UserName { get; set; }
     }
 }

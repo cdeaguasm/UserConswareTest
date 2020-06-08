@@ -28,7 +28,6 @@ namespace Persistence
                 .IsRequired();
 
             modelBuilder.Entity<User>().Property(t => t.Avatar)
-                .IsRequired()
                 .HasMaxLength(100);
 
             modelBuilder.Entity<User>().Property(t => t.UserName)

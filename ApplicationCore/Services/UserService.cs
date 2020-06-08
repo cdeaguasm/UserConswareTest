@@ -22,11 +22,24 @@ namespace ApplicationCore.Services
             return await _userRepository.Get(id);
         }
 
-        public async Task<IReadOnlyList<UserResponse>> Get()
+        public async Task<IReadOnlyList<UserResponse>> Get(string filter = null)
         {
-            return (await _userRepository.Get())
+            var users = (await _userRepository.Get())
                 .Select(x => UserResponse.Map(x))
+                .OrderByDescending(x => x.CreatedAt)
                 .ToList();
+
+            if (!string.IsNullOrEmpty(filter))
+            {
+                filter = filter.ToLower();
+
+                users = users.Where(u => 
+                    u.FirstName.ToLower().Contains(filter)
+                    || u.LastName.ToLower().Contains(filter)
+                    || u.UserName.ToLower().Contains(filter)).ToList();
+            }
+
+            return users;
         }
 
         public async Task<User> Create(User user)

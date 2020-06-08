@@ -17,10 +17,12 @@ namespace Persistence
 
                 if (!appDbContext.Users.Any())
                 {
-                    var user = new User("Carlos", "De Aguas Manga", DateTime.Now.AddDays(-1500), "default.jpg", "cdeaguasm");
+                    var user = new User("Carlos", "De Aguas Manga", DateTime.Now.AddDays(-1500), "cdeaguasm");
                     user.SetIsAdmin(true);
+                    user.SetAvatar("no-img.jpg");
 
-                    var lastUser = new User("Vanessa", "Perez", DateTime.Now.AddDays(-1500), "default.jpg", "vanessap");
+                    var lastUser = new User("Lina", "Santiago", DateTime.Now.AddDays(-1500), "lsantiago");
+                    lastUser.SetAvatar("no-img.jpg");
 
                     appDbContext.Users.AddRange(
                         user,

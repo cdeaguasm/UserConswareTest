@@ -15,27 +15,30 @@ namespace ApplicationCore.Entities
         public DateTime CreatedAt { get; private set; }
         public DateTime? UpdatedAt { get; private set; }
 
-        public User(string firstName, string lastName, DateTime birthDate, string avatar, string userName)
+        public User(string firstName, string lastName, DateTime birthDate, string userName)
         {
             FirstName = firstName;
             LastName = lastName;
             BirthDate = birthDate;
-            Avatar = avatar;
             UserName = userName;
             Password = "123456";
             IsAdmin = false;
             CreatedAt = DateTime.Now;
         }
 
-        public void UpdateEntity(int id, string firstName, string lastName, DateTime birthDate, string avatar, string userName)
+        public void UpdateEntity(int id, string firstName, string lastName, DateTime birthDate, string userName)
         {
             Id = id;
             FirstName = firstName;
             LastName = lastName;
             BirthDate = birthDate;
-            Avatar = avatar;
             UserName = userName;
             UpdatedAt = DateTime.Now;
+        }
+
+        public void SetAvatar(string avatar)
+        {
+            Avatar = avatar;
         }
 
         public void SetPassword(string password)
