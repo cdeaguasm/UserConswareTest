@@ -1,9 +1,11 @@
 <header>
   <nav
-    class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
+    class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-consware border-bottom box-shadow mb-4"
   >
     <div class="container">
-      <a class="navbar-brand" [routerLink]="['/']">UserConswareTest</a>
+      <a class="navbar-brand text-white" [routerLink]="['/users']"
+        ><strong>Consware Usuarios</strong></a
+      >
       <button
         class="navbar-toggler"
         type="button"
@@ -25,17 +27,12 @@
             [routerLinkActive]="['link-active']"
             [routerLinkActiveOptions]="{ exact: true }"
           >
-            <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
-          </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/counter']"
-              >Counter</a
+            <a class="nav-link text-white" href="javascript:void(0)"
+              >Bienvenido(a), {{ userName }}</a
             >
           </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/fetch-data']"
-              >Fetch data</a
-            >
+          <li class="nav-item">
+            <a class="nav-link text-white" [routerLink]="['/']">Salir</a>
           </li>
         </ul>
       </div>

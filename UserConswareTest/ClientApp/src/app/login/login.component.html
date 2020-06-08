@@ -1,0 +1,55 @@
+<div class="bg-login">
+  <div class="content-login">
+    <h3 class="text-center mb-4 text-muted">Log In</h3>
+    <form
+      #loginForm="ngForm"
+      (ngSubmit)="loginForm.form.valid && validateLogin()"
+      novalidate
+    >
+      <div class="form-group">
+        <input
+          autofocus
+          type="text"
+          class="form-control"
+          required
+          [ngClass]="{ 'is-invalid': loginForm.submitted && uName.invalid }"
+          placeholder="Digite nombre de usuario"
+          [(ngModel)]="userName"
+          name="uName"
+          #uName="ngModel"
+        />
+        <div
+          class="invalid-feedback"
+          *ngIf="loginForm.submitted && uName.invalid"
+        >
+          <span *ngIf="uName.errors.required"
+            >Por favor digite su usuario.</span
+          >
+        </div>
+      </div>
+      <div class="form-group">
+        <input
+          type="password"
+          class="form-control"
+          required
+          [ngClass]="{ 'is-invalid': loginForm.submitted && pwd.invalid }"
+          placeholder="Digite contraseña"
+          [(ngModel)]="password"
+          name="pwd"
+          #pwd="ngModel"
+        />
+        <div
+          class="invalid-feedback"
+          *ngIf="loginForm.submitted && pwd.invalid"
+        >
+          <span *ngIf="pwd.errors.required"
+            >Por favor digite su contraseña.</span
+          >
+        </div>
+      </div>
+      <button class="btn btn-consware btn-block" [disabled]="processing">
+        Iniciar Sesión
+      </button>
+    </form>
+  </div>
+</div>

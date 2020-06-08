@@ -1,0 +1,171 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h2 class="text-center text-muted">{{ title }}</h2>
+        <form [formGroup]="userForm" #formU="ngForm" (ngSubmit)="save()">
+          <div class="row">
+            <div class="col-md-3">
+              <img [src]="imgPreview" class="img-thumbnail my-4" />
+              <input
+                id="avatar"
+                formControlName="avatar"
+                style="display: none;"
+                type="file"
+                (change)="onFileSelected($event)"
+                accept=".jpg, .jpeg, .png"
+              />
+              <div class="text-center">
+                <input
+                  type="button"
+                  class="btn btn-consware"
+                  value="Seleccionar Imagen"
+                  onclick="document.getElementById('avatar').click();"
+                />
+              </div>
+            </div>
+            <div class="col-md-9">
+              <div class="form-group">
+                <label>Nombres</label>
+                <input
+                  type="text"
+                  formControlName="firstName"
+                  autofocus
+                  class="form-control"
+                  [ngClass]="{
+                    'is-invalid':
+                      firstName.invalid &&
+                      (firstName.dirty || firstName.touched)
+                  }"
+                  placeholder="Nombres"
+                  required
+                />
+                <div
+                  class="invalid-feedback"
+                  *ngIf="
+                    firstName.invalid && (firstName.dirty || firstName.touched)
+                  "
+                >
+                  <div *ngIf="firstName.errors.required">
+                    Nombres requeridos
+                  </div>
+                  <div *ngIf="firstName.errors.minlength">
+                    Los nombres deben tener una longitud miníma de 4 caracteres
+                  </div>
+                  <div *ngIf="firstName.errors.maxlength">
+                    Los nombres deben tener una longitud maxima de 100
+                    caracteres
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Apellidos</label>
+                <input
+                  type="text"
+                  formControlName="lastName"
+                  class="form-control"
+                  [ngClass]="{
+                    'is-invalid':
+                      lastName.invalid && (lastName.dirty || lastName.touched)
+                  }"
+                  placeholder="Apellidos"
+                  required
+                />
+                <div
+                  class="invalid-feedback"
+                  *ngIf="
+                    lastName.invalid && (lastName.dirty || lastName.touched)
+                  "
+                >
+                  <div *ngIf="lastName.errors.required">
+                    Apellidos requeridos
+                  </div>
+                  <div *ngIf="lastName.errors.minlength">
+                    Los apellidos deben tener una longitud miníma de 4
+                    caracteres
+                  </div>
+                  <div *ngIf="lastName.errors.maxlength">
+                    Los apellidos deben tener una longitud maxima de 100
+                    caracteres
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Fecha de Nacimiento</label>
+                <input
+                  type="date"
+                  formControlName="birthDate"
+                  class="form-control"
+                  [ngClass]="{
+                    'is-invalid':
+                      birthDate.invalid &&
+                      (birthDate.dirty || birthDate.touched)
+                  }"
+                  placeholder="Fecha nacimiento"
+                  required
+                />
+                <div
+                  class="invalid-feedback"
+                  *ngIf="
+                    birthDate.invalid && (birthDate.dirty || birthDate.touched)
+                  "
+                >
+                  <div *ngIf="birthDate.errors.required">
+                    Fecha de nacimiento requerida
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Nombre de Usuario</label>
+                <input
+                  type="text"
+                  formControlName="userName"
+                  class="form-control"
+                  [ngClass]="{
+                    'is-invalid':
+                      userName.invalid && (userName.dirty || userName.touched)
+                  }"
+                  placeholder="Nombre de Usuario"
+                  required
+                />
+                <div
+                  class="invalid-feedback"
+                  *ngIf="
+                    userName.invalid && (userName.dirty || userName.touched)
+                  "
+                >
+                  <div *ngIf="userName.errors.required">
+                    Nombre de usuario requerido
+                  </div>
+                  <div *ngIf="userName.errors.minlength">
+                    el nombre de usuario debe tener una longitud miníma de 4
+                    caracteres
+                  </div>
+                  <div *ngIf="userName.errors.maxlength">
+                    El nombre de usuario debe tener una longitud maxima de 100
+                    caracteres
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="text-center">
+            <button
+              class="btn btn-consware mr-2"
+              type="submit"
+              [disabled]="userForm.invalid || processing"
+            >
+              Guardar Datos
+            </button>
+            <button class="btn btn-light" (click)="goToUsers()">
+              Cancelar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

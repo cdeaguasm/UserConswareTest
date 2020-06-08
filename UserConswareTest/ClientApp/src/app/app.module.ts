@@ -5,18 +5,30 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { NavMenuComponent } from './nav-menu/nav-menu.component';
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './guards/auth.guard';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavMenuComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot([])
+    RouterModule.forRoot([
+      {
+        path: '',
+        component: LoginComponent,
+        pathMatch: 'full'
+      },
+      {
+        path: 'users',
+        loadChildren: () => import('./user/user.module').then(m => m.UserModule),
+        canLoad: [AuthGuard]
+      },
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]
