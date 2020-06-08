@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user';
 import { Observable } from 'rxjs';
+import { AlertMessageService } from 'src/app/services/alert-message.service';
 
 @Component({
     selector: 'app-user-list',
@@ -13,8 +14,10 @@ export class UserListComponent implements OnInit {
     users$: Observable<User[]>;
     _baseUrl: string;
 
-    constructor(private userService: UserService,
-        @Inject('BASE_URL') private baseUrl: string) { }
+    constructor(
+        private userService: UserService,
+        @Inject('BASE_URL') private baseUrl: string,
+        private alertMessageService: AlertMessageService) { }
 
     ngOnInit() {
         this._baseUrl = `${this.baseUrl}uploads`;
@@ -31,6 +34,7 @@ export class UserListComponent implements OnInit {
         if (result) {
             this.userService.deleteUser(user.id)
                 .subscribe(() => {
+                    this.alertMessageService.show("alert-success", "Operación Exitosa");
                     this.getUsers();
                 })
         }

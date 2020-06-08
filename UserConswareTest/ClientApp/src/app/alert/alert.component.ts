@@ -7,8 +7,8 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class AlertComponent implements OnInit {
 
-  @Input() message: string;
   @Input() show: boolean = false;
+  @Input() message: string;
   @Input() alertClass: string;
 
   constructor() { }

@@ -4,7 +4,7 @@ namespace ApplicationCore.Exceptions
 {
     public class UserExistsException : Exception
     {
-        public UserExistsException(string userName) : base($"The user {userName} exists in the database")
+        public UserExistsException(string userName) : base($"El usuario {userName} se encuentra registrado.")
         {
         }
     }

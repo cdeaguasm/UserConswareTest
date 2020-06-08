@@ -5,6 +5,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 import { formatDate } from '@angular/common';
+import { AlertMessageService } from 'src/app/services/alert-message.service';
 
 @Component({
     selector: 'app-user-editor',
@@ -25,7 +26,8 @@ export class UserEditorComponent implements OnInit {
         private router: Router,
         private userService: UserService,
         private sanitizer: DomSanitizer,
-        @Inject('BASE_URL') private baseUrl: string) { }
+        @Inject('BASE_URL') private baseUrl: string,
+        private alertMessageService: AlertMessageService) { }
 
     ngOnInit() {
         this.buildForm();
@@ -48,7 +50,6 @@ export class UserEditorComponent implements OnInit {
         this.userService.getUser(id)
             .subscribe(data => {
                 this.user = data;
-                console.log(this.user);
                 this.imgPreview = `${this.baseUrl}uploads/${this.user.avatar}`;
                 this.userForm.patchValue({
                     firstName: this.user.firstName,
@@ -77,12 +78,7 @@ export class UserEditorComponent implements OnInit {
                 Validators.required,
                 Validators.minLength(4),
                 Validators.maxLength(50)
-            ]),
-            // 'alterEgo': new FormControl(this.hero.alterEgo, {
-            //   asyncValidators: [this.alterEgoValidator.validate.bind(this.alterEgoValidator)],
-            //   updateOn: 'blur'
-            // }),
-            // 'power': new FormControl(this.hero.power, Validators.required)
+            ])
         });
     }
 
@@ -123,7 +119,11 @@ export class UserEditorComponent implements OnInit {
 
         urlSubscription$
             .subscribe(result => {
+                this.alertMessageService.show("alert-success", "Operación Exitosa");
                 this.goToUsers();
+                this.processing = false;
+            }, error => {
+                this.alertMessageService.show("alert-danger", error.error);
                 this.processing = false;
             });
     }

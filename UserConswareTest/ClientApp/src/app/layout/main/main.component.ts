@@ -12,9 +12,16 @@ import { AlertMessageService } from 'src/app/services/alert-message.service';
 export class MainComponent implements OnDestroy, AfterViewChecked {
 
     showLoading: boolean;
+    showAlert: boolean;
     descriptionLoadContentScreen: string;
+    descriptionAlert: string;
+    alertType: string;
+
     loadingSubscription$: Subscription;
+    showAlertSubscription$: Subscription;
     descriptionLoadContentScreenSubscription$: Subscription;
+    descriptionAlertSubscription$: Subscription;
+    alertTypeSubscription$: Subscription;
 
     constructor(
         private loadingContentService: LoadingContentService,
@@ -23,6 +30,7 @@ export class MainComponent implements OnDestroy, AfterViewChecked {
 
     ngAfterViewChecked() {
         this.initLoadingContent();
+        this.initAlertMessage();
     }
 
     initLoadingContent() {
@@ -31,6 +39,19 @@ export class MainComponent implements OnDestroy, AfterViewChecked {
 
         this.loadingSubscription$ = this.loadingContentService.getLoading()
             .subscribe(value => this.showLoading = value);
+
+        this.cdRef.detectChanges();
+    }
+
+    initAlertMessage() {
+        this.descriptionAlertSubscription$ = this.alertMessageService.getDescription()
+            .subscribe(description => this.descriptionAlert = description);
+
+        this.showAlertSubscription$ = this.alertMessageService.getShow()
+            .subscribe(value => this.showAlert = value);
+
+        this.alertTypeSubscription$ = this.alertMessageService.getAlertType()
+            .subscribe(value => this.alertType = value);
 
         this.cdRef.detectChanges();
     }

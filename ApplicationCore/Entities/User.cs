@@ -23,6 +23,7 @@ namespace ApplicationCore.Entities
             UserName = userName;
             Password = "123456";
             IsAdmin = false;
+            Avatar = "no-img.jpg";
             CreatedAt = DateTime.Now;
         }
 

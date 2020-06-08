@@ -8,6 +8,7 @@ export class AlertMessageService {
 
     private _show = new Subject<boolean>();
     private _alertType = new Subject<string>();
+    private _description = new Subject<string>();
 
     constructor() { }
 
@@ -19,17 +20,14 @@ export class AlertMessageService {
         return this._alertType;
     }
 
-    showSuccess() {
-        this._show.next(true);
-        this._alertType.next("alert-success");
+    getDescription(): Subject<string> {
+        return this._description;
     }
 
-    showError() {
+    show(alertClass: string, description: string) {
         this._show.next(true);
-        this._alertType.next("alert-danger");
-    }
-
-    hide() {
-        setTimeout(() => this._show.next(false), 5000);
+        this._alertType.next(alertClass);
+        this._description.next(description);
+        setTimeout(() => this._show.next(false), 8000);
     }
 }
