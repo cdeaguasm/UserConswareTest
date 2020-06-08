@@ -6,8 +6,11 @@ import { UserListComponent } from './user-list/user-list.component';
 import { UserEditorComponent } from './user-editor/user-editor.component';
 import { MainComponent } from '../layout/main/main.component';
 import { NavMenuComponent } from '../layout/nav-menu/nav-menu.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { MustMatchDirective } from '../helpers/must-match.directive';
+import { LoadingContentComponent } from '../loading-content/loading-content.component';
+import { AlertComponent } from '../alert/alert.component';
 
 @NgModule({
     declarations: [
@@ -15,12 +18,16 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
         UserEditorComponent,
         ChangePasswordComponent,
         NavMenuComponent,
-        MainComponent
+        MainComponent,
+        MustMatchDirective,
+        LoadingContentComponent,
+        AlertComponent
     ],
     imports: [
         CommonModule,
         UserRoutingModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        FormsModule
     ]
 })
 export class UserModule { }

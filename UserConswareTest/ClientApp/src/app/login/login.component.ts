@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
   userName: string;
   password: string;
   processing = false;
+  invalidLogin: string;
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -27,6 +28,12 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/users']);
         this.processing = false;
       }, error => {
+        if (error.status === 401) {
+          this.invalidLogin = "Usuario o Contraseña incorrectos";
+          setTimeout(() => {
+            this.invalidLogin = "";
+          }, 8000);
+        }
         this.processing = false;
       });
   }

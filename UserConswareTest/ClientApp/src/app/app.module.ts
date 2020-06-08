@@ -7,6 +7,8 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './guards/auth.guard';
+import { LoadingContentComponent } from './loading-content/loading-content.component';
+import { LoadingContentInterceptor } from './interceptors/loading-content.interceptor';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { AuthGuard } from './guards/auth.guard';
       },
     ])
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingContentInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

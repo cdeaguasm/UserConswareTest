@@ -26,7 +26,7 @@ export class UserListComponent implements OnInit {
     }
 
     deleteUser(user: User) {
-        const result = confirm(`Está seguro que desea eliminar el usuario ${user.userName} ?`);
+        const result = confirm(`¿ Está seguro que desea eliminar el usuario ${user.userName} ?`);
 
         if (result) {
             this.userService.deleteUser(user.id)

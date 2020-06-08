@@ -36,4 +36,8 @@ export class UserService {
     deleteUser(id: number): Observable<any> {
         return this.http.delete(`${this.baseUrl}${this.usersResource}${id}`);
     }
+
+    changePassword(id: number, model: any): Observable<any> {
+        return this.http.put(`${this.baseUrl}${this.usersResource}${id}/password`, model);
+    }
 }

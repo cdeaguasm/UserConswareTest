@@ -1,0 +1,15 @@
+.container {
+  width: 150px;
+  left: 0;
+  right: 0;
+  top: 30px;
+  margin: 0 auto;
+  position: fixed;
+  z-index: 100000;
+  text-align: center;
+  color: #8a6d3b;
+  background-color: #fff4bc;
+  border-color: #faebcc;
+  padding: 4px 0;
+  border-radius: 2px;
+}

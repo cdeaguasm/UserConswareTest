@@ -1,4 +1,11 @@
+<app-loading-content
+  [show]="showLoading"
+  [description]="descriptionLoadContentScreen"
+></app-loading-content>
 <app-nav-menu></app-nav-menu>
 <div class="container">
+  <div class="alert alert-success" role="alert">
+    A simple success alert—check it out!
+  </div>
   <router-outlet></router-outlet>
 </div>
